@@ -224,7 +224,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <span class="font-size-sm font-w500">Settings</span>
                                     </a>
                                     <div role="separator" class="dropdown-divider"></div>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_signin.html">
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="dashboard/logout">
                                         <span class="font-size-sm font-w500">Log Out</span>
                                     </a>
                                 </div>
