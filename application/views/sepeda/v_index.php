@@ -46,9 +46,9 @@
                                 <?php echo $sepeda->namaMerk ?>
                             </td>
                             <td>
-                                <span><i class="far fa-eye"></i></span>
-                                <span><i class="far fa-edit"></i></span>
-                                <span><i class="far fa-trash-alt"></i></span>
+                                <span><a href="<?= base_url('sepeda/view/') . $sepeda->id ?>" style="color: black"><i class="far fa-eye"></i></a></span>
+                                <span><a href="<?= base_url('sepeda/update/') . $sepeda->id ?>" style="color: black"><i class="far fa-edit"></i></a></span>
+                                <span><a onclick="$.fn.delete(<?=$sepeda->id ?>)" style="cursor: pointer"><i class="far fa-trash-alt"></i></a></span>
                             </td>
                         </tr>
                     <?php
@@ -62,3 +62,18 @@
     <!-- END Dynamic Table Simple -->
 </div>
 <!-- END Page Content -->
+<script type="text/javascript">
+    $.fn.delete = function(id) {
+        $.ajax({
+            method: "POST",
+            url: "<?= base_url('sepeda/delete/') ?>"+id,
+            dataType: 'json',
+            // contentType: 'application/json',
+            success: function(data) {
+                console.log(data);
+                jQuery('#toast-example-1').toast('show');
+                window.location.href = "<?= base_url('sepeda') ?>";
+            }
+        });
+    }
+</script>

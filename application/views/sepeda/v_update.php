@@ -17,15 +17,17 @@
     <!-- Basic -->
     <div class="block block-rounded">
         <div class="block-header">
-            <h3 class="block-title"><?php echo $title ?></h3>
+            <h3 class="block-title" style="display: inline-block;"><?php echo $title ?></h3>
+            <a class="btn btn-danger" id="delete" onclick="$.fn.delete()">Hapus</a>
         </div>
         <div class="block-content block-content-full">
             <form action="be_forms_elements.html" method="POST" enctype="multipart/form-data" onsubmit="return false;">
                 <div class="row push">
                     <div class="col-lg-12 col-xl-5">
+                        <input type="hidden" name="id" id="id" value="<?= $dataSepeda[0]->id ?>">
                         <div class="form-group">
                             <label for="example-text-input">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="example-text-input" placeholder="Contoh : Polygon">
+                            <input type="text" class="form-control" id="nama" name="example-text-input" placeholder="Contoh : Polygon" value="<?= $dataSepeda[0]->nama ?>">
                         </div>
                         <div class="form-group">
                             <label for="val-select2">Tipe <span class="text-danger">*</span></label>
@@ -68,15 +70,24 @@
 </div>
 <!-- END Page Content -->
 <script type="text/javascript">
+    $(document).ready(function() {
+        $('#type').val(<?= $dataSepeda[0]->type_id ?>);
+        $('#type').trigger('change');
+        $('#merk').val(<?= $dataSepeda[0]->merk_id ?>);
+        $('#merk').trigger('change');
+    })
+
     $.fn.save = function() {
+        var id = $('#id').val();
         var nama = $('#nama').val();
         var type = $('#type').select2('val');
         var merk = $('#merk').select2('val');
         // console.log([nama, type, merk]);
         $.ajax({
             method: "POST",
-            url: "<?= base_url('sepeda/create') ?>",
+            url: "<?= base_url('sepeda/update/').$dataSepeda[0]->id ?>",
             data: { 
+                id: id,
                 nama: nama, 
                 type: type,
                 merk: merk, 
@@ -86,7 +97,21 @@
             success: function(data) {
                 console.log(data);
                 jQuery('#toast-example-1').toast('show');
-                window.location.href = "<?= base_url('sepeda/view/') ?>"+data.id;
+                window.location.href = "<?= base_url('sepeda/view/') ?>"+id;
+            }
+        });
+    }
+
+    $.fn.delete = function() {
+        $.ajax({
+            method: "POST",
+            url: "<?= base_url('sepeda/delete/').$dataSepeda[0]->id ?>",
+            dataType: 'json',
+            // contentType: 'application/json',
+            success: function(data) {
+                console.log(data);
+                jQuery('#toast-example-1').toast('show');
+                window.location.href = "<?= base_url('sepeda') ?>";
             }
         });
     }

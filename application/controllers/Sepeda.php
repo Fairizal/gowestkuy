@@ -9,6 +9,8 @@ class Sepeda extends CI_Controller {
 		$this->title = 'Sepeda';
 		$this->link = strtolower($this->title);
 		$this->load->model('m_sepeda');
+		$this->load->model('m_type');
+		$this->load->model('m_merk');
     }
 
 	public function index()
@@ -28,29 +30,74 @@ class Sepeda extends CI_Controller {
 		$data['title'] = 'Tambah ' . $this->title;
 		$data['link'] = $this->link;
 		$data['content'] = 'sepeda/v_create';
-		// $data['dataSepeda'] = $this->m_sepeda->getIndex();
+		$data['dataType'] = $this->m_type->getIndex();
+		$data['dataMerk'] = $this->m_merk->getindex();
 		if ($this->input->method() == 'post') {
 			$postData = $this->input->post();
-			// die(var_dump($postData['nama']));
 			$data = [
 				'nama' => $postData['nama'],
 				'type_id' => $postData['type'],
 				'merk_id' => $postData['merk']
 			];
 			$id = $this->m_sepeda->insertData($data);
-			if($this->m_sepeda->insertData($data)){
+			if($id){
 				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Sukses', 'id' => $id)));
 
 			} else {
 				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal Simpan')));
 			}
-			// redirect('/sepeda', 'refresh');
-			// return json_encode([
-			// 	'status' => true,
-			// 	'msg' => 'Sukses'
-			// ]);
 		} else {
 			$this->load->view('layouts/v_layouts', $data);
+		}
+	}
+
+	public function view($id)
+	{
+		$this->load->helper('url');
+		$data['title'] = 'Detail ' . $this->title;
+		$data['link'] = $this->link;
+		$data['content'] = 'sepeda/v_view';
+		$data['dataSepeda'] = $this->m_sepeda->getData($id);
+		$data['dataType'] = $this->m_type->getIndex();
+		$data['dataMerk'] = $this->m_merk->getindex();
+		// die(var_dump($data['dataMerk']));
+		$this->load->view('layouts/v_layouts', $data);
+	}
+
+	public function update($id)
+	{
+		$this->load->helper('url');
+		$data['title'] = 'Ubah ' . $this->title;
+		$data['link'] = $this->link;
+		$data['content'] = 'sepeda/v_update';
+		$data['dataSepeda'] = $this->m_sepeda->getData($id);
+		$data['dataType'] = $this->m_type->getIndex();
+		$data['dataMerk'] = $this->m_merk->getindex();
+		if ($this->input->method() == 'post') {
+			$postData = $this->input->post();
+			$data = [
+				'nama' => $postData['nama'],
+				'type_id' => $postData['type'],
+				'merk_id' => $postData['merk']
+			];
+			$id = $postData['id'];
+			if($this->m_sepeda->updateData($id, $data)){
+				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Sukses', 'id' => $id)));
+
+			} else {
+				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal Simpan')));
+			}
+		} else {
+			$this->load->view('layouts/v_layouts', $data);
+		}
+	}
+
+	public function delete($id)
+	{
+		if ($this->m_sepeda->deleteData($id)) {
+			$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Berhasil Dihapus')));
+		} else {
+			$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal Hapus')));
 		}
 	}
 }
