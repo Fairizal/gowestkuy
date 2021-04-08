@@ -11,6 +11,9 @@ class Sepeda extends CI_Controller {
 		$this->load->model('m_sepeda');
 		$this->load->model('m_type');
 		$this->load->model('m_merk');
+		if (!$this->session->userdata('user')){
+            redirect('login');
+        }
     }
 
 	public function index()
@@ -20,7 +23,6 @@ class Sepeda extends CI_Controller {
 		$data['link'] = $this->link;
 		$data['content'] = 'sepeda/v_index';
 		$data['dataSepeda'] = $this->m_sepeda->getIndex();
-		// die(var_dump($data['dataSepeda']));
 		$this->load->view('layouts/v_layouts', $data);
 	}
 	
@@ -60,7 +62,6 @@ class Sepeda extends CI_Controller {
 		$data['dataSepeda'] = $this->m_sepeda->getData($id);
 		$data['dataType'] = $this->m_type->getIndex();
 		$data['dataMerk'] = $this->m_merk->getindex();
-		// die(var_dump($data['dataMerk']));
 		$this->load->view('layouts/v_layouts', $data);
 	}
 

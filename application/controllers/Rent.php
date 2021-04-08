@@ -8,6 +8,9 @@ class Rent extends CI_Controller {
         parent::__construct();
 		$this->title = 'Sewa';
 		$this->link = strtolower($this->title);
+		if (!$this->session->userdata('user')){
+            redirect('login');
+        }
     }
 
 	public function index()
