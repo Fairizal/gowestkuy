@@ -39,14 +39,16 @@ class Sepeda extends CI_Controller {
 			$data = [
 				'nama' => $postData['nama'],
 				'type_id' => $postData['type'],
-				'merk_id' => $postData['merk']
+				'merk_id' => $postData['merk'],
+				'qty' => $postData['qty'],
+				'harga' => $postData['harga'],
 			];
 			$id = $this->m_sepeda->insertData($data);
 			if($id){
-				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Sukses', 'id' => $id)));
+				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Berhasil menyimpan data', 'id' => $id)));
 
 			} else {
-				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal Simpan')));
+				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal menyimpan data')));
 			}
 		} else {
 			$this->load->view('layouts/v_layouts', $data);
@@ -79,14 +81,15 @@ class Sepeda extends CI_Controller {
 			$data = [
 				'nama' => $postData['nama'],
 				'type_id' => $postData['type'],
-				'merk_id' => $postData['merk']
+				'merk_id' => $postData['merk'],
+				'harga' => $postData['harga'],
 			];
 			$id = $postData['id'];
 			if($this->m_sepeda->updateData($id, $data)){
-				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Sukses', 'id' => $id)));
+				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Berhasil menyimpan data', 'id' => $id)));
 
 			} else {
-				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal Simpan')));
+				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal menyimpan data')));
 			}
 		} else {
 			$this->load->view('layouts/v_layouts', $data);
@@ -96,9 +99,9 @@ class Sepeda extends CI_Controller {
 	public function delete($id)
 	{
 		if ($this->m_sepeda->deleteData($id)) {
-			$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Berhasil Dihapus')));
+			$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Berhasil menghapus data')));
 		} else {
-			$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal Hapus')));
+			$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal menghapus data')));
 		}
 	}
 }

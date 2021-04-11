@@ -20,43 +20,34 @@
             <h3 class="block-title">Daftar <?php echo $title ?></h3>
         </div>
         <div class="block-content block-content-full">
-            <a href="<?= base_url('sepeda/create')?>" class="btn btn-primary">Tambah</a>
+            <a href="<?= base_url('sewa/create')?>" class="btn btn-primary">Tambah</a>
             <table class="table table-bordered table-striped table-vcenter js-dataTable-simple">
                 <thead>
                     <tr>
                         <th class="text-center" style="width: 80px;">No</th>
-                        <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Tipe</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Merk</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Qty</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Harga</th>
-                        <th style="width: 15%;">Aksi</th>
+                        <th>No. Transaksi</th>
+                        <th>Tgl. Sewa</th>
+                        <th>Lama Pinjam</th>
+                        <th>Pelanggan</th>
+                        <th style="width: 10%;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                         $idx = 1;
-                        foreach ($dataSepeda as $sepeda) {
+                        foreach ($dataSewa as $sewa) {
                     ?>
                         <tr>
                             <td class="text-center font-size-sm"><?php echo $idx ?></td>
-                            <td class="font-w600 font-size-sm"><?php echo $sepeda->namaSepeda ?></td>
-                            <td class="d-none d-sm-table-cell font-size-sm">
-                                <?php echo $sepeda->namaType ?>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                <?php echo $sepeda->namaMerk ?>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                <?php echo $sepeda->qty ?>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                <?php echo $sepeda->harga ?>
-                            </td>
+                            <td class="font-w400 font-size-sm"><?php echo $sewa->trxno ?></td>
+                            <td class="font-w400 font-size-sm"><?php echo $sewa->tgl_sewa ?></td>
+                            <td class="font-w400 font-size-sm"><?php echo $sewa->duedays ?></td>
+                            <td class="font-w400 font-size-sm"><?php echo $sewa->pelanggan ?></td>
+                            
                             <td>
-                                <span><a href="<?= base_url('sepeda/view/') . $sepeda->id ?>" style="color: black"><i class="far fa-eye"></i></a></span>
-                                <span><a href="<?= base_url('sepeda/update/') . $sepeda->id ?>" style="color: black"><i class="far fa-edit"></i></a></span>
-                                <span><a onclick="$.fn.delete(<?=$sepeda->id ?>)" style="cursor: pointer"><i class="far fa-trash-alt"></i></a></span>
+                                <span><a href="<?= base_url('sewa/view/') . $sewa->id ?>" style="color: black"><i class="far fa-eye"></i></a></span>
+                                <span><a href="<?= base_url('sewa/update/') . $sewa->id ?>" style="color: black"><i class="far fa-edit"></i></a></span>
+                                <span><a onclick="$.fn.delete(<?=$sewa->id ?>)" style="cursor: pointer"><i class="far fa-trash-alt"></i></a></span>
                             </td>
                         </tr>
                     <?php
@@ -74,7 +65,7 @@
     $.fn.delete = function(id) {
         $.ajax({
             method: "POST",
-            url: "<?= base_url('sepeda/delete/') ?>"+id,
+            url: "<?= base_url('sewa/delete/') ?>"+id,
             dataType: 'json',
             // contentType: 'application/json',
             success: function(data) {
@@ -82,7 +73,7 @@
                     $('#toastTitle').text('Berhasil');
                     $('#toastText').text(data.msg);
                     jQuery('#toast-example-1').toast('show');
-                    window.location.href = "<?= base_url('sepeda') ?>";
+                    window.location.href = "<?= base_url('sewa') ?>";
                 } else {
                     $('#toastTitle').text('Gagal');
                     $('#toastText').text(data.msg);

@@ -4,7 +4,7 @@ class M_Sepeda extends CI_Model
 {
 	public function getIndex()
 	{
-		$this->db->select('s.id, s.nama as namaSepeda, t.nama as namaType, m.nama as namaMerk');
+		$this->db->select('s.id, s.nama as namaSepeda, t.nama as namaType, m.nama as namaMerk, qty, harga');
 		$this->db->from('sepeda s');
 		$this->db->join('type t', 't.id = s.type_id');
 		$this->db->join('merk m', 'm.id = s.merk_id');

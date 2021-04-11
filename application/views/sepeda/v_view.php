@@ -58,6 +58,14 @@
                                 ?>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="example-text-input">Qty</label>
+                            <input type="number" class="form-control" id="qty" name="qty" placeholder="Isi qty" value="<?= $dataSepeda[0]->qty ?>" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="example-text-input">Harga</label>
+                            <input type="text" class="form-control" id="harga" name="harga" placeholder="Isi harga" value="<?= $dataSepeda[0]->harga ?>" disabled>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -84,9 +92,16 @@
             dataType: 'json',
             // contentType: 'application/json',
             success: function(data) {
-                console.log(data);
-                jQuery('#toast-example-1').toast('show');
-                window.location.href = "<?= base_url('sepeda') ?>";
+                if(data.status == true) {
+                    $('#toastTitle').text('Berhasil');
+                    $('#toastText').text(data.msg);
+                    jQuery('#toast-example-1').toast('show');
+                    window.location.href = "<?= base_url('sepeda') ?>";
+                } else {
+                    $('#toastTitle').text('Gagal');
+                    $('#toastText').text(data.msg);
+                    jQuery('#toast-example-1').toast('show');
+                }
             }
         });
     }

@@ -57,6 +57,10 @@
                                 ?>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="example-text-input">Harga</label>
+                            <input type="text" class="form-control" id="harga" name="harga" placeholder="Isi harga" value="<?= $dataSepeda[0]->harga ?>">
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -82,6 +86,7 @@
         var nama = $('#nama').val();
         var type = $('#type').select2('val');
         var merk = $('#merk').select2('val');
+        var harga = $('#harga').val();
         // console.log([nama, type, merk]);
         $.ajax({
             method: "POST",
@@ -91,13 +96,21 @@
                 nama: nama, 
                 type: type,
                 merk: merk, 
+                harga: harga, 
             },
             dataType: 'json',
             // contentType: 'application/json',
             success: function(data) {
-                console.log(data);
-                jQuery('#toast-example-1').toast('show');
-                window.location.href = "<?= base_url('sepeda/view/') ?>"+id;
+                if(data.status == true) {
+                    $('#toastTitle').text('Berhasil');
+                    $('#toastText').text(data.msg);
+                    jQuery('#toast-example-1').toast('show');
+                    window.location.href = "<?= base_url('sepeda/view/') ?>"+data.id;
+                } else {
+                    $('#toastTitle').text('Gagal');
+                    $('#toastText').text(data.msg);
+                    jQuery('#toast-example-1').toast('show');
+                }
             }
         });
     }
@@ -109,9 +122,16 @@
             dataType: 'json',
             // contentType: 'application/json',
             success: function(data) {
-                console.log(data);
-                jQuery('#toast-example-1').toast('show');
-                window.location.href = "<?= base_url('sepeda') ?>";
+                if(data.status == true) {
+                    $('#toastTitle').text('Berhasil');
+                    $('#toastText').text(data.msg);
+                    window.location.href = "<?= base_url('sepeda') ?>";
+                    jQuery('#toast-example-1').toast('show');
+                } else {
+                    $('#toastTitle').text('Gagal');
+                    $('#toastText').text(data.msg);
+                    jQuery('#toast-example-1').toast('show');
+                }
             }
         });
     }

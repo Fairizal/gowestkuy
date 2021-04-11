@@ -37,6 +37,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
         <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
+        <link rel="stylesheet" href="assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+        <link rel="stylesheet" href="assets/js/plugins/flatpickr/flatpickr.min.css">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
@@ -88,10 +90,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <script src="assets/js/pages/be_tables_datatables.min.js"></script>
         <script src="assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+        <script src="assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+        <script src="assets/js/plugins/flatpickr/flatpickr.min.js"></script>
 
         <!-- Page JS Helpers (jQuery Sparkline Plugins) -->
-        <script>jQuery(function () { One.helpers(['sparkline']); });</script>
-        <script>jQuery(function () { One.helpers('select2'); });</script>
+        <script>jQuery(function () { One.helpers(['sparkline', 'select2', 'datepicker', 'flatpickr']); });</script>
+        <script type="text/javascript">
+            function filter(data, id) {
+                for (var i = 0;  i < data.length; i++) {
+                    if(data[i].id == id){
+                        return data[i];
+                    }
+                }
+            }
+        </script>
+        <!-- <script>jQuery(function () { One.helpers(); });</script> -->
         <!-- Page Container -->
         <!--
             Available classes for #page-container:
@@ -210,7 +223,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </a>
                                 <ul class="nav-main-submenu">
                                     <li class="nav-main-item">
-                                        <a class="nav-main-link <?php echo $link == 'sewa' ? 'active' : ''?>" href="<?= base_url('rent')?>">
+                                        <a class="nav-main-link <?php echo $link == 'sewa' ? 'active' : ''?>" href="<?= base_url('sewa')?>">
                                             <i class="nav-main-link-icon si si-bag"></i>
                                             <span class="nav-main-link-name">Sewa</span>
                                         </a>
@@ -340,13 +353,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div id="toast-example-1" class="toast fade hide" data-delay="4000" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header">
                         <i class="si si-bubble text-primary mr-2"></i>
-                        <strong class="mr-auto">Title</strong>
-                        <small class="text-muted">just now</small>
+                        <strong class="mr-auto" id="toastTitle">Title</strong>
                         <button type="button" class="ml-2 close" data-dismiss="toast" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="toast-body">
+                    <div class="toast-body" id="toastText">
                         This is a nice notification based on Bootstrap implementation.
                     </div>
                 </div>

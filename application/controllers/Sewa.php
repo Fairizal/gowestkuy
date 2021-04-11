@@ -1,14 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Karyawan extends CI_Controller {
- 	
+class Sewa extends CI_Controller {
+
  	public function __construct()
     {
         parent::__construct();
-		$this->title = 'Karyawan';
+		$this->title = 'Sewa';
 		$this->link = strtolower($this->title);
-		$this->load->model('m_karyawan');
+		$this->load->model('m_sewa');
+		$this->load->model('m_sewad');
+		$this->load->model('m_sepeda');
 		if (!$this->session->userdata('user')){
             redirect('login');
         }
@@ -19,8 +21,8 @@ class Karyawan extends CI_Controller {
 		$this->load->helper('url');
 		$data['title'] = $this->title;
 		$data['link'] = $this->link;
-		$data['content'] = 'karyawan/v_index';
-		$data['dataKaryawan'] = $this->m_karyawan->getIndex();
+		$data['content'] = 'sewa/v_index';
+		$data['dataSewa'] = $this->m_sewa->getIndex();
 		$this->load->view('layouts/v_layouts', $data);
 	}
 
@@ -29,17 +31,22 @@ class Karyawan extends CI_Controller {
 		$this->load->helper('url');
 		$data['title'] = 'Tambah ' . $this->title;
 		$data['link'] = $this->link;
-		$data['content'] = 'karyawan/v_create';
+		$data['dataSepeda'] = $this->m_sepeda->getIndex();
+		$data['content'] = 'sewa/v_create';
 		if ($this->input->method() == 'post') {
 			$postData = $this->input->post();
+			// die(var_dump($postData));
 			$data = [
-				'nama' => $postData['nama'],
-				'username' => $postData['username'],
-				'password' => md5('Asdf1234'),
+				'trxno' => $postData['trxno'],
+				'tgl_sewa' => $postData['tgl_sewa'],
+				'duedays' => $postData['duedays'],
+				'pelanggan' => $postData['pelanggan'],
+				'nohp' => $postData['nohp'],
 				'alamat' => $postData['alamat'],
-				'nohp' => $postData['nohp']
+				'total' => $postData['total'],
 			];
-			$id = $this->m_karyawan->insertData($data);
+			$dataDetail = $postData['detail'];
+			$id = $this->m_sewa->insertData($data, $dataDetail);
 			if($id){
 				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Berhasil menyimpan data', 'id' => $id)));
 
@@ -56,9 +63,28 @@ class Karyawan extends CI_Controller {
 		$this->load->helper('url');
 		$data['title'] = 'Detail ' . $this->title;
 		$data['link'] = $this->link;
-		$data['content'] = 'karyawan/v_view';
-		$data['dataKaryawan'] = $this->m_karyawan->getData($id);
-		$this->load->view('layouts/v_layouts', $data);
+		$data['dataSewa'] = $this->m_sewa->getData($id);
+		$data['dataSewad'] = $this->m_sewad->getIndex($id);
+		$data['content'] = 'sewa/v_view';
+		// if ($this->input->method() == 'post') {
+		// 	$postData = $this->input->post();
+		// 	$data = [
+		// 		'nama' => $postData['nama'],
+		// 		'username' => $postData['username'],
+		// 		'password' => md5('Asdf1234'),
+		// 		'alamat' => $postData['alamat'],
+		// 		'nohp' => $postData['nohp']
+		// 	];
+		// 	$id = $this->m_karyawan->insertData($data);
+		// 	if($id){
+		// 		$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Berhasil menyimpan data', 'id' => $id)));
+
+		// 	} else {
+		// 		$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal menyimpan data')));
+		// 	}
+		// } else {
+			$this->load->view('layouts/v_layouts', $data);
+		// }
 	}
 
 	public function update($id)
@@ -66,17 +92,25 @@ class Karyawan extends CI_Controller {
 		$this->load->helper('url');
 		$data['title'] = 'Ubah ' . $this->title;
 		$data['link'] = $this->link;
-		$data['content'] = 'karyawan/v_update';
-		$data['dataKaryawan'] = $this->m_karyawan->getData($id);
+		$data['content'] = 'sewa/v_update';
+		$data['dataSepeda'] = $this->m_sepeda->getIndex();
+		$data['dataSewa'] = $this->m_sewa->getData($id);
+		$data['dataSewad'] = $this->m_sewad->getIndex($id);
 		if ($this->input->method() == 'post') {
 			$postData = $this->input->post();
+			$id = $id;
 			$data = [
-				'nama' => $postData['nama'],
+				'trxno' => $postData['trxno'],
+				'tgl_sewa' => $postData['tgl_sewa'],
+				'duedays' => $postData['duedays'],
+				'pelanggan' => $postData['pelanggan'],
+				'nohp' => $postData['nohp'],
 				'alamat' => $postData['alamat'],
-				'nohp' => $postData['nohp']
+				'total' => $postData['total'],
 			];
-			$id = $postData['id'];
-			if($this->m_karyawan->updateData($id, $data)){
+			$dataDetail = $postData['detail'];
+			$id = $this->m_sewa->updateData($id, $data, $dataDetail);
+			if($id){
 				$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Berhasil menyimpan data', 'id' => $id)));
 
 			} else {
@@ -89,7 +123,7 @@ class Karyawan extends CI_Controller {
 
 	public function delete($id)
 	{
-		if ($this->m_karyawan->deleteData($id)) {
+		if ($this->m_sewa->deleteData($id)) {
 			$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'Berhasil menghapus data')));
 		} else {
 			$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal menghapus data')));

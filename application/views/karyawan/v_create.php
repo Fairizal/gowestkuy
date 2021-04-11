@@ -65,14 +65,21 @@
                 nama: nama, 
                 username: username,
                 alamat: alamat, 
-                nohp: nohp, 
+                nohp: nohp,
             },
             dataType: 'json',
             // contentType: 'application/json',
             success: function(data) {
-                console.log(data);
-                jQuery('#toast-example-1').toast('show');
-                window.location.href = "<?= base_url('karyawan/view/') ?>"+data.id;
+                if(data.status == true) {
+                    $('#toastTitle').text('Berhasil');
+                    $('#toastText').text(data.msg);
+                    jQuery('#toast-example-1').toast('show');
+                    window.location.href = "<?= base_url('karyawan/view/') ?>"+data.id;
+                } else {
+                    $('#toastTitle').text('Gagal');
+                    $('#toastText').text(data.msg);
+                    jQuery('#toast-example-1').toast('show');
+                }
             }
         });
     }
