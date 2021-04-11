@@ -6,6 +6,7 @@ class M_Sewa extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('sewa');
+		$this->db->where(['isback' => false]);
 		$query = $this->db->get()->result();
 		return $query;
 	}
@@ -41,6 +42,7 @@ class M_Sewa extends CI_Model
 					'subtotal' => $detail['subtotal']
 				];
 				$this->db->insert('sewad', $saveDetail);
+				$idx++;
 			}
 
 			if ($this->db->trans_status() === FALSE)
@@ -79,6 +81,7 @@ class M_Sewa extends CI_Model
 					'subtotal' => $detail['subtotal']
 				];
 				$this->db->insert('sewad', $saveDetail);
+				$idx++;
 			}
 
 			if ($this->db->trans_status() === FALSE)

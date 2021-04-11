@@ -92,6 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
         <script src="assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
         <script src="assets/js/plugins/flatpickr/flatpickr.min.js"></script>
+        <script src="assets/js/moment.min.js"></script>
 
         <!-- Page JS Helpers (jQuery Sparkline Plugins) -->
         <script>jQuery(function () { One.helpers(['sparkline', 'select2', 'datepicker', 'flatpickr']); });</script>
