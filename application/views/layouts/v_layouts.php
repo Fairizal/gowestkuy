@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>GoWest Kuy</title>
+        <title><?= $title ?></title>
 
         <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
@@ -80,6 +80,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
         <script src="assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
         <script src="assets/js/plugins/select2/js/select2.full.min.js"></script>
+        <script src="assets/js/plugins/datatables/buttons/buttons.print.min.js"></script>
+        <!-- <script src="assets/js/plugins/datatables/buttons/buttons.html5.min.js"></script> -->
+        <!-- <script src="assets/js/plugins/datatables/buttons/buttons.flash.min.js"></script> -->
+        <!-- <script src="assets/js/plugins/datatables/buttons/buttons.colVis.min.js"></script> -->
         <!-- <script src="assets/js/plugins/datatables/buttons/buttons.print.min.js"></script> -->
         <!-- <script src="assets/js/plugins/datatables/buttons/buttons.html5.min.js"></script> -->
         <!-- <script src="assets/js/plugins/datatables/buttons/buttons.flash.min.js"></script> -->
@@ -233,6 +237,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a class="nav-main-link <?php echo $link == 'back' ? 'active' : ''?>" href="<?= base_url('back')?>">
                                             <i class="nav-main-link-icon si si-bag"></i>
                                             <span class="nav-main-link-name">Kembali</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-main-item <?php echo $link == 'sewareport' || $link == 'backreport' ? 'open' : '' ?>">
+                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                                    <i class="nav-main-link-icon si si-layers"></i>
+                                    <span class="nav-main-link-name">Laporan</span>
+                                </a>
+                                <ul class="nav-main-submenu">
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link <?php echo $link == 'sewareport' ? 'active' : ''?>" href="<?= base_url('sewareport')?>">
+                                            <i class="nav-main-link-icon si si-bag"></i>
+                                            <span class="nav-main-link-name">Laporan Sewa</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link <?php echo $link == 'backreport' ? 'active' : ''?>" href="<?= base_url('backreport')?>">
+                                            <i class="nav-main-link-icon si si-bag"></i>
+                                            <span class="nav-main-link-name">Laporan Pengembalian</span>
                                         </a>
                                     </li>
                                 </ul>

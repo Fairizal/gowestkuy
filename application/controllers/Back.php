@@ -33,7 +33,7 @@ class Back extends CI_Controller {
 		$this->load->helper('url');
 		$data['title'] = 'Tambah ' . $this->title;
 		$data['link'] = $this->link;
-		$data['dataSepeda'] = $this->m_sepeda->getIndex();
+		$data['dataSepeda'] = $this->m_sepeda->getIndexNotBack();
 		$data['dataSewa'] = $this->m_sewa->getIndex();
 		$data['content'] = 'back/v_create';
 		if ($this->input->method() == 'post') {

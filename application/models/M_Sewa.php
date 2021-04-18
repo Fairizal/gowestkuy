@@ -6,6 +6,14 @@ class M_Sewa extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('sewa');
+		$query = $this->db->get()->result();
+		return $query;
+	}
+
+	public function getIndexNotBack()
+	{
+		$this->db->select('*');
+		$this->db->from('sewa');
 		$this->db->where(['isback' => false]);
 		$query = $this->db->get()->result();
 		return $query;

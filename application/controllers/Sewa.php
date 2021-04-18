@@ -31,7 +31,7 @@ class Sewa extends CI_Controller {
 		$this->load->helper('url');
 		$data['title'] = 'Tambah ' . $this->title;
 		$data['link'] = $this->link;
-		$data['dataSepeda'] = $this->m_sepeda->getIndex();
+		$data['dataSepeda'] = $this->m_sepeda->getIndexNotBack();
 		$data['content'] = 'sewa/v_create';
 		if ($this->input->method() == 'post') {
 			$postData = $this->input->post();
@@ -93,7 +93,7 @@ class Sewa extends CI_Controller {
 		$data['title'] = 'Ubah ' . $this->title;
 		$data['link'] = $this->link;
 		$data['content'] = 'sewa/v_update';
-		$data['dataSepeda'] = $this->m_sepeda->getIndex();
+		$data['dataSepeda'] = $this->m_sepeda->getIndexNotBack();
 		$data['dataSewa'] = $this->m_sewa->getData($id);
 		$data['dataSewad'] = $this->m_sewad->getIndex($id);
 		if ($this->input->method() == 'post') {
