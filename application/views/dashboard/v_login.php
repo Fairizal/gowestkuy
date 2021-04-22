@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+        <title>Login</title>
 
         <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
@@ -94,9 +94,9 @@
                                             <h1 class="h4 mb-1">
                                                 Sign In
                                             </h1>
-                                            <h2 class="h6 font-w400 text-muted mb-3">
+                                            <!-- <h2 class="h6 font-w400 text-muted mb-3">
                                                 A perfect match for your project
-                                            </h2>
+                                            </h2> -->
                                         </div>
                                         <!-- END Header -->
 
@@ -111,7 +111,7 @@
                                                 <div class="form-group">
                                                     <input type="password" class="form-control form-control-lg form-control-alt" id="password" name="password" placeholder="Password">
                                                 </div>
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <div class="d-md-flex align-items-md-center justify-content-md-between">
                                                         <div class="custom-control custom-switch">
                                                             <input type="checkbox" class="custom-control-input" id="login-remember" name="login-remember">
@@ -121,12 +121,12 @@
                                                             <a class="font-size-sm font-w500" href="op_auth_reminder2.html">Forgot Password?</a>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="form-group row justify-content-center mb-0">
                                                 <div class="col-md-6 col-xl-5">
                                                     <button type="submit" class="btn btn-block btn-primary">
-                                                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Sign In
+                                                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Login
                                                     </button>
                                                 </div>
                                             </div>
@@ -140,7 +140,7 @@
 
                         <!-- Footer -->
                         <div class="font-size-sm text-center text-muted py-3">
-                            <strong>OneUI 4.7</strong> &copy; <span data-toggle="year-copy"></span>
+                            <strong>GoWest Kuy</strong> &copy; <span data-toggle="year-copy"></span>
                         </div>
                         <!-- END Footer -->
                     </div>

@@ -21,18 +21,18 @@
             <div class="block block-rounded d-flex flex-column">
                 <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
-                        <dt class="font-size-h2 font-w700">32</dt>
-                        <dd class="text-muted mb-0">Pending Orders</dd>
+                        <dt class="font-size-h2 font-w700" id="omzet">_</dt>
+                        <dd class="text-muted mb-0">Omzet</dd>
                     </dl>
                     <div class="item item-rounded bg-body">
-                        <i class="fa fa-shopping-cart font-size-h3 text-primary"></i>
+                        <i class="fa fa-dollar-sign font-size-h3 text-primary"></i>
                     </div>
                 </div>
                 <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                    <a class="font-w500 d-flex align-items-center" href="javascript:void(0)">
+                    <!-- <a class="font-w500 d-flex align-items-center" href="javascript:void(0)">
                         View all orders
                         <i class="fa fa-arrow-alt-circle-right ml-1 opacity-25 font-size-base"></i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <!-- END Pending Orders -->
@@ -42,18 +42,18 @@
             <div class="block block-rounded d-flex flex-column">
                 <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
-                        <dt class="font-size-h2 font-w700">124</dt>
-                        <dd class="text-muted mb-0">New Customers</dd>
+                        <dt class="font-size-h2 font-w700" id="countSewa">_</dt>
+                        <dd class="text-muted mb-0">Semua Sewa</dd>
                     </dl>
                     <div class="item item-rounded bg-body">
-                        <i class="fa fa-users font-size-h3 text-primary"></i>
+                        <i class="fa fa-shopping-cart font-size-h3 text-primary"></i>
                     </div>
                 </div>
                 <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                    <a class="font-w500 d-flex align-items-center" href="javascript:void(0)">
+                    <!-- <a class="font-w500 d-flex align-items-center" href="javascript:void(0)">
                         View all customers
                         <i class="fa fa-arrow-alt-circle-right ml-1 opacity-25 font-size-base"></i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <!-- END New Customers -->
@@ -63,18 +63,18 @@
             <div class="block block-rounded d-flex flex-column">
                 <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
-                        <dt class="font-size-h2 font-w700">45</dt>
-                        <dd class="text-muted mb-0">Messages</dd>
+                        <dt class="font-size-h2 font-w700" id="countBackOnly">_</dt>
+                        <dd class="text-muted mb-0">Hanya Kembali</dd>
                     </dl>
                     <div class="item item-rounded bg-body">
-                        <i class="fa fa-inbox font-size-h3 text-primary"></i>
+                        <i class="fa fa-cart-arrow-down font-size-h3 text-primary"></i>
                     </div>
                 </div>
                 <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                    <a class="font-w500 d-flex align-items-center" href="javascript:void(0)">
+                    <!-- <a class="font-w500 d-flex align-items-center" href="javascript:void(0)">
                         View all messages
                         <i class="fa fa-arrow-alt-circle-right ml-1 opacity-25 font-size-base"></i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <!-- END Messages -->
@@ -84,18 +84,18 @@
             <div class="block block-rounded d-flex flex-column">
                 <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
-                        <dt class="font-size-h2 font-w700">4.5%</dt>
-                        <dd class="text-muted mb-0">Conversion Rate</dd>
+                        <dt class="font-size-h2 font-w700" id="countSepeda">_</dt>
+                        <dd class="text-muted mb-0">Sepeda</dd>
                     </dl>
                     <div class="item item-rounded bg-body">
-                        <i class="fa fa-chart-line font-size-h3 text-primary"></i>
+                        <i class="fa fa-bicycle font-size-h3 text-primary"></i>
                     </div>
                 </div>
                 <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-                    <a class="font-w500 d-flex align-items-center" href="javascript:void(0)">
+                    <!-- <a class="font-w500 d-flex align-items-center" href="javascript:void(0)">
                         View statistics
                         <i class="fa fa-arrow-alt-circle-right ml-1 opacity-25 font-size-base"></i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <!-- END Conversion Rate-->
@@ -262,324 +262,57 @@
         </div>
     </div>
     <!-- END Statistics -->
-
-    <!-- Recent Orders -->
-    <div class="block block-rounded">
-        <div class="block-header block-header-default">
-            <h3 class="block-title">Recent Orders</h3>
-            <div class="block-options">
-                <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="class-toggle" data-target="#one-dashboard-search-orders" data-class="d-none">
-                    <i class="fa fa-search"></i>
-                </button>
-                <div class="dropdown d-inline-block">
-                    <button type="button" class="btn btn-sm btn-alt-primary" id="dropdown-recent-orders-filters" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-fw fa-flask"></i>
-                        Filters
-                        <i class="fa fa-angle-down ml-1"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right font-size-sm" aria-labelledby="dropdown-recent-orders-filters">
-                        <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                            Pending..
-                            <span class="badge badge-primary badge-pill">35</span>
-                        </a>
-                        <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                            Processing
-                            <span class="badge badge-primary badge-pill">15</span>
-                        </a>
-                        <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                            For Delivery
-                            <span class="badge badge-primary badge-pill">20</span>
-                        </a>
-                        <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                            Canceled
-                            <span class="badge badge-primary badge-pill">72</span>
-                        </a>
-                        <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                            Delivered
-                            <span class="badge badge-primary badge-pill">890</span>
-                        </a>
-                        <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                            All
-                            <span class="badge badge-primary badge-pill">997</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="one-dashboard-search-orders" class="block-content border-bottom d-none">
-            <!-- Search Form -->
-            <form action="be_pages_dashboard.html" method="POST" onsubmit="return false;">
-                <div class="form-group push">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="one-ecom-orders-search" name="one-ecom-orders-search" placeholder="Search recent orders..">
-                        <div class="input-group-append">
-                            <span class="input-group-text">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <!-- END Search Form -->
-        </div>
-        <div class="block-content">
-            <!-- Recent Orders Table -->
-            <div class="table-responsive">
-                <table class="table table-borderless table-striped table-vcenter">
-                    <thead>
-                        <tr>
-                            <th class="text-center" style="width: 120px;">Order ID</th>
-                            <th class="d-none d-sm-table-cell">Created</th>
-                            <th class="d-none d-xl-table-cell">Customer</th>
-                            <th>Status</th>
-                            <th class="d-none d-xl-table-cell text-center">Products</th>
-                            <th class="d-none d-sm-table-cell text-center">Profit</th>
-                            <th class="d-none d-sm-table-cell text-right">Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">
-                                    <strong>ORD.00965</strong>
-                                </a>
-                            </td>
-                            <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">27 min ago</td>
-                            <td class="d-none d-xl-table-cell font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">Albert Ray</a>
-                            </td>
-                            <td>
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-danger-light text-danger">Canceled</span>
-                            </td>
-                            <td class="d-none d-xl-table-cell text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">7</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-center">
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark">3%</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-right font-size-sm">
-                                <strong>$26,52</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">
-                                    <strong>ORD.00964</strong>
-                                </a>
-                            </td>
-                            <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">8 min ago</td>
-                            <td class="d-none d-xl-table-cell font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">Helen Jacobs</a>
-                            </td>
-                            <td>
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-success-light text-success">Delivered</span>
-                            </td>
-                            <td class="d-none d-xl-table-cell text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">4</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-center">
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark">17%</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-right font-size-sm">
-                                <strong>$1190,65</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">
-                                    <strong>ORD.00963</strong>
-                                </a>
-                            </td>
-                            <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">6 min ago</td>
-                            <td class="d-none d-xl-table-cell font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">Carl Wells</a>
-                            </td>
-                            <td>
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-warning-light text-warning">Processing</span>
-                            </td>
-                            <td class="d-none d-xl-table-cell text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">3</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-center">
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark">25%</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-right font-size-sm">
-                                <strong>$717,24</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">
-                                    <strong>ORD.00962</strong>
-                                </a>
-                            </td>
-                            <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">19 min ago</td>
-                            <td class="d-none d-xl-table-cell font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">Betty Kelley</a>
-                            </td>
-                            <td>
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-success-light text-success">Delivered</span>
-                            </td>
-                            <td class="d-none d-xl-table-cell text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">1</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-center">
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark">12%</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-right font-size-sm">
-                                <strong>$868,63</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">
-                                    <strong>ORD.00961</strong>
-                                </a>
-                            </td>
-                            <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">11 min ago</td>
-                            <td class="d-none d-xl-table-cell font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">Amanda Powell</a>
-                            </td>
-                            <td>
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-warning-light text-warning">Processing</span>
-                            </td>
-                            <td class="d-none d-xl-table-cell text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">5</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-center">
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark">14%</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-right font-size-sm">
-                                <strong>$242,66</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">
-                                    <strong>ORD.00960</strong>
-                                </a>
-                            </td>
-                            <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">2 min ago</td>
-                            <td class="d-none d-xl-table-cell font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">Amber Harvey</a>
-                            </td>
-                            <td>
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-success-light text-success">Delivered</span>
-                            </td>
-                            <td class="d-none d-xl-table-cell text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">7</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-center">
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark">7%</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-right font-size-sm">
-                                <strong>$1322,63</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">
-                                    <strong>ORD.00959</strong>
-                                </a>
-                            </td>
-                            <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">3 min ago</td>
-                            <td class="d-none d-xl-table-cell font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">Barbara Scott</a>
-                            </td>
-                            <td>
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-danger-light text-danger">Canceled</span>
-                            </td>
-                            <td class="d-none d-xl-table-cell text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">4</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-center">
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark">23%</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-right font-size-sm">
-                                <strong>$96,40</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">
-                                    <strong>ORD.00958</strong>
-                                </a>
-                            </td>
-                            <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">13 min ago</td>
-                            <td class="d-none d-xl-table-cell font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">Lori Grant</a>
-                            </td>
-                            <td>
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-success-light text-success">Delivered</span>
-                            </td>
-                            <td class="d-none d-xl-table-cell text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">3</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-center">
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark">14%</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-right font-size-sm">
-                                <strong>$1006,30</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">
-                                    <strong>ORD.00957</strong>
-                                </a>
-                            </td>
-                            <td class="d-none d-sm-table-cell font-size-sm font-w600 text-muted">9 min ago</td>
-                            <td class="d-none d-xl-table-cell font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">Amanda Powell</a>
-                            </td>
-                            <td>
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded  bg-danger-light text-danger">Canceled</span>
-                            </td>
-                            <td class="d-none d-xl-table-cell text-center font-size-sm">
-                                <a class="font-w600" href="javascript:void(0)">4</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-center">
-                                <span class="font-size-sm font-w600 px-2 py-1 rounded bg-body-dark">17%</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell text-right font-size-sm">
-                                <strong>$100,20</strong>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- END Recent Orders Table -->
-
-            <!-- Pagination -->
-            <nav aria-label="Photos Search Navigation">
-                <ul class="pagination pagination-sm justify-content-end mt-2">
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0)" tabindex="-1" aria-label="Previous">
-                            Prev
-                        </a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="javascript:void(0)">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0)">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0)">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0)">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                            Next
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- END Pagination -->
-        </div>
-    </div>
-    <!-- END Recent Orders -->
 </div>
 <!-- END Page Content -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax({
+            method: "POST",
+            url: "<?= base_url('helper/getomzet/') ?>",
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if(data.status == true) {
+                    $('#omzet').text(data.data);
+                }
+            }
+        });
+
+        $.ajax({
+            method: "POST",
+            url: "<?= base_url('helper/getallsewa/') ?>",
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if(data.status == true) {
+                    $('#countSewa').text(data.data.sewa);
+                }
+            }
+        });
+
+        $.ajax({
+            method: "POST",
+            url: "<?= base_url('helper/getonlykembali/') ?>",
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if(data.status == true) {
+                    $('#countBackOnly').text(data.data.back);
+                }
+            }
+        });
+
+        $.ajax({
+            method: "POST",
+            url: "<?= base_url('helper/getqtysepeda/') ?>",
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if(data.status == true) {
+                    $('#countSepeda').text(data.data.qtysepeda);
+                }
+            }
+        });
+        
+    })
+</script>
