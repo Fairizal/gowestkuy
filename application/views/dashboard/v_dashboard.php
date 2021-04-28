@@ -104,10 +104,10 @@
     <!-- END Overview -->
 
     <!-- Statistics -->
-    <div class="row">
-        <div class="col-xl-8 d-flex flex-column">
+    <!-- <div class="row">
+        <div class="col-xl-8 d-flex flex-column"> -->
             <!-- Earnings Summary -->
-            <div class="block block-rounded flex-grow-1 d-flex flex-column">
+            <!-- <div class="block block-rounded flex-grow-1 d-flex flex-column">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">Earnings Summary</h3>
                     <div class="block-options">
@@ -119,11 +119,11 @@
                         </button>
                     </div>
                 </div>
-                <div class="block-content block-content-full flex-grow-1 d-flex align-items-center">
+                <div class="block-content block-content-full flex-grow-1 d-flex align-items-center"> -->
                     <!-- Earnings Chart Container -->
                     <!-- Chart.js Chart is initialized in js/pages/be_pages_dashboard.min.js which was auto compiled from _es6/pages/be_pages_dashboard.js -->
                     <!-- For more info and examples you can check out http://www.chartjs.org/docs/ -->
-                    <canvas class="js-chartjs-earnings"></canvas>
+                    <!-- <canvas class="js-chartjs-earnings"></canvas>
                 </div>
                 <div class="block-content bg-body-light">
                     <div class="row items-push text-center w-100">
@@ -153,14 +153,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- END Earnings Summary -->
-        </div>
-        <div class="col-xl-4 d-flex flex-column">
+        <!-- </div>
+        <div class="col-xl-4 d-flex flex-column"> -->
             <!-- Last 2 Weeks -->
             <!-- Sparkline Charts (.js-sparkline class is initialized in Helpers.sparkline() -->
             <!-- For more info and examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
-            <div class="row row-deck flex-grow-1">
+            <!-- <div class="row row-deck flex-grow-1">
                 <div class="col-md-6 col-xl-12">
                     <div class="block block-rounded d-flex flex-column">
                         <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between">
@@ -175,9 +175,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="block-content p-1 text-center overflow-hidden">
+                        <div class="block-content p-1 text-center overflow-hidden"> -->
                             <!-- Sparkline Line: Orders -->
-                            <span class="js-sparkline" data-type="line"
+                            <!-- <span class="js-sparkline" data-type="line"
                                   data-points="[33,29,32,37,38,30,34,28,43,45,26,45,49,39]"
                                   data-width="100%"
                                   data-height="70px"
@@ -207,9 +207,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="block-content p-1 text-center oveflow-hidden">
+                        <div class="block-content p-1 text-center oveflow-hidden"> -->
                             <!-- Sparkline Line: Earnings -->
-                            <span class="js-sparkline" data-type="line"
+                            <!-- <span class="js-sparkline" data-type="line"
                                   data-points="[716,1185,750,1365,956,890,1200,968,1158,1025,920,1190,720,1352]"
                                   data-width="100%"
                                   data-height="70px"
@@ -239,9 +239,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="block-content p-1 text-center oveflow-hidden">
+                        <div class="block-content p-1 text-center oveflow-hidden"> -->
                             <!-- Sparkline Line: New Customers -->
-                            <span class="js-sparkline" data-type="line"
+                            <!-- <span class="js-sparkline" data-type="line"
                                   data-points="[25,15,36,14,29,19,36,41,28,26,29,33,23,41]"
                                   data-width="100%"
                                   data-height="70px"
@@ -257,10 +257,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- END Last 2 Weeks -->
-        </div>
-    </div>
+        <!-- </div>
+    </div> -->
     <!-- END Statistics -->
 </div>
 <!-- END Page Content -->

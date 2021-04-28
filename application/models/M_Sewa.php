@@ -50,6 +50,9 @@ class M_Sewa extends CI_Model
 					'subtotal' => $detail['subtotal']
 				];
 				$this->db->insert('sewad', $saveDetail);
+				$qtySepeda = $this->db->select('qty')->from('sepeda')->where(['id' => $detail['sepeda_id']])->get()->result();
+				$qty = $qtySepeda[0]->qty;
+				$this->db->where(['id' => $detail['sepeda_id']])->update('sepeda', ['qty' => $qty-1]);
 				$idx++;
 			}
 
@@ -78,6 +81,12 @@ class M_Sewa extends CI_Model
 		else
 		{
 			$sewaId = $id;
+			$dataSewadOld = $this->db->select('*')->from('sewad')->where(['sewa_id' => $sewaId])->get()->result();
+			foreach ($dataSewadOld as $sewad) {
+				$qtySepeda = $this->db->select('qty')->from('sepeda')->where(['id' => $sewad->sepeda_id])->get()->result();
+				$qty = $qtySepeda[0]->qty;
+				$this->db->where(['id' => $sewad->sepeda_id])->update('sepeda', ['qty' => $qty+1]);
+			}
 			$this->db->delete('sewad', ['sewa_id' => $sewaId]);
 			$idx = 1;
 			foreach ($dataDetail as $detail) {
@@ -89,6 +98,10 @@ class M_Sewa extends CI_Model
 					'subtotal' => $detail['subtotal']
 				];
 				$this->db->insert('sewad', $saveDetail);
+				$qtySepeda = $this->db->select('qty')->from('sepeda')->where(['id' => $detail['sepeda_id']])->get()->result();
+				// die(var_dump($qtySepeda));
+				$qty = $qtySepeda[0]->qty;
+				$this->db->where(['id' => $detail['sepeda_id']])->update('sepeda', ['qty' => $qty-1]);
 				$idx++;
 			}
 
@@ -115,14 +128,26 @@ class M_Sewa extends CI_Model
 		}
 		else
 		{
-			$this->db->delete('sewa', ['id' => $id]);
-			if ($this->db->trans_status() === FALSE)
-			{
+			$dataBack = $this->db->select('*')->from('back')->where(['sewa_id' => $id])->get()->result();
+			if (!$dataBack) {
+				$dataSewadOld = $this->db->select('*')->from('sewad')->where(['sewa_id' => $id])->get()->result();
+				foreach ($dataSewadOld as $sewad) {
+					$qtySepeda = $this->db->select('qty')->from('sepeda')->where(['id' => $sewad->sepeda_id])->get()->result();
+					$qty = $qtySepeda[0]->qty;
+					$this->db->where(['id' => $sewad->sepeda_id])->update('sepeda', ['qty' => $qty+1]);
+				}
+				$this->db->delete('sewa', ['id' => $id]);
+				if ($this->db->trans_status() === FALSE)
+				{
+					$this->db->trans_rollback();
+				    return 0;
+				}
+				$this->db->trans_commit();
+				return 1;
+			} else {
 				$this->db->trans_rollback();
 			    return 0;
 			}
-			$this->db->trans_commit();
-			return 1;
 		}
 	}
 }

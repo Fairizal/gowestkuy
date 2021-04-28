@@ -41,6 +41,9 @@ class M_Back extends CI_Model
 					'subdenda' => $detail['subdenda']
 				];
 				$this->db->insert('backd', $saveDetail);
+				$qtySepeda = $this->db->select('qty')->from('sepeda')->where(['id' => $detail['sepeda_id']])->get()->result();
+				$qty = $qtySepeda[0]->qty;
+				$this->db->where(['id' => $detail['sepeda_id']])->update('sepeda', ['qty' => $qty+1]);
 			}
 
 			if ($this->db->trans_status() === FALSE)
@@ -85,6 +88,12 @@ class M_Back extends CI_Model
 			else
 			{
 				$backId = $id;
+				$dataBackdOld = $this->db->select('*')->from('backd')->where(['back_id' => $backId])->get()->result();
+				foreach ($dataBackdOld as $backd) {
+					$qtySepeda = $this->db->select('qty')->from('sepeda')->where(['id' => $backd->sepeda_id])->get()->result();
+					$qty = $qtySepeda[0]->qty;
+					$this->db->where(['id' => $backd->sepeda_id])->update('sepeda', ['qty' => $qty-1]);
+				}
 				$this->db->delete('backd', ['back_id' => $backId]);
 				$idx = 1;
 				foreach ($dataDetail as $detail) {
@@ -96,6 +105,10 @@ class M_Back extends CI_Model
 						'subdenda' => $detail['subdenda']
 					];
 					$this->db->insert('backd', $saveDetail);
+					$qtySepeda = $this->db->select('qty')->from('sepeda')->where(['id' => $detail['sepeda_id']])->get()->result();
+					// die(var_dump($qtySepeda));
+					$qty = $qtySepeda[0]->qty;
+					$this->db->where(['id' => $detail['sepeda_id']])->update('sepeda', ['qty' => $qty+1]);
 					$idx++;
 				}
 
@@ -130,6 +143,12 @@ class M_Back extends CI_Model
 		$dataBack = $this->db->get()->result();
 
 		// die(var_dump($dataBack[0]->sewa_id));
+		$dataBackdOld = $this->db->select('*')->from('backd')->where(['back_id' => $id])->get()->result();
+		foreach ($dataBackdOld as $backd) {
+			$qtySepeda = $this->db->select('qty')->from('sepeda')->where(['id' => $backd->sepeda_id])->get()->result();
+			$qty = $qtySepeda[0]->qty;
+			$this->db->where(['id' => $backd->sepeda_id])->update('sepeda', ['qty' => $qty-1]);
+		}
 		$this->db->delete('backd', ['back_id' => $id]);
 		if($this->db->trans_status() === FALSE)
 		{

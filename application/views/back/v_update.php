@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="<?= base_url('karyawan')?>" class="btn btn-alt-light" id="back">Kembali</a>
+                    <a href="<?= base_url('back')?>" class="btn btn-alt-light" id="back">Kembali</a>
                     <button onclick="$.fn.save()" class="btn btn-primary" id="save">Simpan</button>
                 </div>
             </form>

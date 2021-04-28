@@ -90,7 +90,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="<?= base_url('karyawan')?>" class="btn btn-alt-light" id="back">Kembali</a>
+                    <a href="<?= base_url('back')?>" class="btn btn-alt-light" id="back">Kembali</a>
                 </div>
             </form>
         </div>
@@ -152,7 +152,7 @@
                 if(data.status == true) {
                     $('#toastTitle').text('Berhasil');
                     $('#toastText').text(data.msg);
-                    window.location.href = "<?= base_url('sewa') ?>";
+                    window.location.href = "<?= base_url('back') ?>";
                     jQuery('#toast-example-1').toast('show');
                 } else {
                     $('#toastTitle').text('Gagal');
