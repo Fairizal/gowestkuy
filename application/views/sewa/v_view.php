@@ -18,8 +18,10 @@
     <div class="block block-rounded">
         <div class="block-header">
             <h3 class="block-title" style="display: inline-block;"><?php echo $title ?></h3>
-            <a class="btn btn-danger" id="delete" onclick="$.fn.delete()">Hapus</a>
-            <a href="<?= base_url('sewa/update/').$dataSewa[0]->id ?>" class="btn btn-success" id="update" style="margin-left: 10px">Ubah</a>
+            <?php if(!$dataSewa[0]->isback){ ?>
+                <a class="btn btn-danger" id="delete" onclick="$.fn.delete()">Hapus</a>
+                <a href="<?= base_url('sewa/update/').$dataSewa[0]->id ?>" class="btn btn-success" id="update" style="margin-left: 10px">Ubah</a>
+            <?php } ?>
         </div>
         <div class="block-content block-content-full">
             <form action="be_forms_elements.html" method="POST" enctype="multipart/form-data" onsubmit="return false;">

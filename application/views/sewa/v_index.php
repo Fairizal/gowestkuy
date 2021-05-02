@@ -29,6 +29,7 @@
                         <th>Tgl. Sewa</th>
                         <th>Lama Pinjam</th>
                         <th>Pelanggan</th>
+                        <th>Status</th>
                         <th style="width: 10%;">Aksi</th>
                     </tr>
                 </thead>
@@ -43,11 +44,13 @@
                             <td class="font-w400 font-size-sm"><?php echo $sewa->tgl_sewa ?></td>
                             <td class="font-w400 font-size-sm"><?php echo $sewa->duedays ?></td>
                             <td class="font-w400 font-size-sm"><?php echo $sewa->pelanggan ?></td>
-                            
+                            <td class="font-w400 font-size-sm"><?php echo $sewa->isback ? 'Dikembalikan' : 'Dipinjam' ?></td>
                             <td>
+                                <?php if(!$sewa->isback){?>
                                 <span><a href="<?= base_url('sewa/view/') . $sewa->id ?>" style="color: black"><i class="far fa-eye"></i></a></span>
                                 <span><a href="<?= base_url('sewa/update/') . $sewa->id ?>" style="color: black"><i class="far fa-edit"></i></a></span>
                                 <span><a onclick="$.fn.delete(<?=$sewa->id ?>)" style="cursor: pointer"><i class="far fa-trash-alt"></i></a></span>
+                                <?php }?>
                             </td>
                         </tr>
                     <?php

@@ -18,7 +18,9 @@
     <div class="block block-rounded">
         <div class="block-header">
             <h3 class="block-title" style="display: inline-block;"><?php echo $title ?></h3>
+            <?php if(!$dataSewa[0]->isback){ ?>
             <a class="btn btn-danger" id="delete" onclick="$.fn.delete()">Hapus</a>
+            <?php } ?>
         </div>
         <div class="block-content block-content-full">
             <form action="be_forms_elements.html" method="POST" enctype="multipart/form-data" onsubmit="return false;">
@@ -28,19 +30,19 @@
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">No. Transaksi</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="trxno" name="trxno" placeholder="Isi No. Transaksi atau biarkan kosong" value="<?= $dataSewa[0]->trxno ?>">
+                                <input type="text" class="form-control" id="trxno" name="trxno" placeholder="Isi No. Transaksi atau biarkan kosong" value="<?= $dataSewa[0]->trxno ?>" <?= $dataSewa[0]->isback ? "disabled" : "" ?>>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-flatpickr-datetime-24" class="col-sm-4 col-form-label">Tanggal</label>
                             <div class="col-sm-8">
-                                <input type="text" class="js-flatpickr form-control bg-white" id="tgl_sewa" name="tgl_sewa" data-enable-time="true" data-time_24hr="true" placeholder="Pilih tanggal" value="<?= $dataSewa[0]->tgl_sewa ?>">
+                                <input type="text" class="js-flatpickr form-control <?= $dataSewa[0]->isback ? '' : 'bg-white' ?>" id="tgl_sewa" name="tgl_sewa" data-enable-time="true" data-time_24hr="true" placeholder="Pilih tanggal" value="<?= $dataSewa[0]->tgl_sewa ?>" <?= $dataSewa[0]->isback ? "disabled" : "" ?>>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">Lama Sewa</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="duedays" name="duedays" placeholder="Isi lama sewa" value="<?= $dataSewa[0]->duedays ?>">
+                                <input type="text" class="form-control" id="duedays" name="duedays" placeholder="Isi lama sewa" value="<?= $dataSewa[0]->duedays ?>" <?= $dataSewa[0]->isback ? "disabled" : "" ?>>
                             </div>
                         </div>
                     </div>
@@ -48,19 +50,19 @@
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">Pelanggan</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="pelanggan" name="pelanggan" placeholder="Isi nama pelanggan" value="<?= $dataSewa[0]->pelanggan ?>">
+                                <input type="text" class="form-control" id="pelanggan" name="pelanggan" placeholder="Isi nama pelanggan" value="<?= $dataSewa[0]->pelanggan ?>" <?= $dataSewa[0]->isback ? "disabled" : "" ?>>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">No. HP</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Isi No. HP Karyawan" value="<?= $dataSewa[0]->nohp ?>">
+                                <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Isi No. HP Karyawan" value="<?= $dataSewa[0]->nohp ?>" <?= $dataSewa[0]->isback ? "disabled" : "" ?>>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">Alamat</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Isi Alamat Karyawan" value="<?= $dataSewa[0]->alamat ?>">
+                                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Isi Alamat Karyawan" value="<?= $dataSewa[0]->alamat ?>" <?= $dataSewa[0]->isback ? "disabled" : "" ?>>
                             </div>
                         </div>
                     </div>
@@ -68,7 +70,7 @@
                 <div class="row push">
                     <div class="col-lg-12">
                         <div class="form-group row col-lg-6">
-                            <select class="js-select2 form-control" id="search" name="search" style="width: 50%;" data-placeholder="Cari Sepeda">
+                            <select class="js-select2 form-control" id="search" name="search" style="width: 50%;" data-placeholder="Cari Sepeda" <?= $dataSewa[0]->isback ? "disabled" : "" ?>>
                                 <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                 <?php
                                     foreach ($dataSepeda as $sepeda) {
@@ -107,7 +109,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="tooltip" title="Delete" onclick="$.fn.deleteColumn(<?= $sewad->idx ?>)">
+                                                    <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="tooltip" title="Delete" onclick="$.fn.deleteColumn(<?= $sewad->idx ?>)" <?= $dataSewa[0]->isback ? "disabled" : "" ?>>
                                                         <i class="fa fa-fw fa-times"></i>
                                                     </button>
                                                 </div>
@@ -134,7 +136,9 @@
                 </div>
                 <div>
                     <a href="<?= base_url('sewa')?>" class="btn btn-alt-light" id="back">Kembali</a>
-                    <button onclick="$.fn.save()" class="btn btn-primary" id="save">Simpan</button>
+                    <?php if(!$dataSewa[0]->isback) { ?>
+                        <button onclick="$.fn.save()" class="btn btn-primary" id="save">Simpan</button>
+                    <?php } ?>
                 </div>
             </form>
         </div>
