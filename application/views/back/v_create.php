@@ -54,7 +54,7 @@
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">Lama Telat</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="backdays" name="backdays" placeholder="Isi lama telat">
+                                <input type="text" class="form-control" id="backdays" name="backdays" placeholder="Isi lama telat" disabled>
                             </div>
                         </div>
                     </div>
@@ -108,6 +108,18 @@
                                 <input type="text" class="form-control" id="total_denda" name="total_denda" placeholder="Total denda" value="0" disabled>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="pay" name="pay" placeholder="Total" value="0">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">Lebih Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="overpay" name="overpay" placeholder="Total" value="0" disabled>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -124,13 +136,15 @@
     var dataSepeda = <?= json_encode($dataSepeda) ?>;
     var dataSewa = <?= json_encode($dataSewa) ?>;
     var dataDetail = [];
-    // $(document).ready(function() {
-    //     var today = new Date();
-    //     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    //     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    //     var dateTime = date+' '+time;
-    //     $('#tgl_kembali').val('2021-04-16 ');
-    // })
+    $(document).ready(function() {
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var id = url.searchParams.get("id");
+        if(id){
+            $('#search').val(id);
+            $('#search').trigger('change');
+        }
+    })
 
     $('#search').change(function(){
         $('#total_denda').val('0');
@@ -142,6 +156,7 @@
             var sewaDate = new Date(moment(sewa.tgl_sewa, "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD"));
             var days = (dateNow-sewaDate) / (1000 * 60 * 60 * 24);
             var telat = days > 0 ? days - parseInt(sewa.duedays) : 0;
+            telat = telat < 0 ? 0 : telat;
             $('#backdays').val(telat);
             var checkNullColumn = $('#detail > tbody:last').find('tr');
             if (checkNullColumn) {
@@ -171,6 +186,7 @@
                             $('#detail > tbody:last').append(rowTable);
                             var total_denda = $('#total_denda').val();
                             $('#total_denda').val(parseInt(total_denda)+parseInt(denda));
+                            $('#overpay').val(parseInt($('#pay').val())-parseInt($('#total_denda').val()));
                         })
                     } 
                     else {
@@ -181,6 +197,10 @@
                 }
             });
         }
+    });
+
+    $('#pay').keyup(function(){
+        $('#overpay').val(parseInt($(this).val() != '' ? $(this).val() : 0)-parseInt($('#total_denda').val()));
     });
 
     // $.fn.deleteColumn = function(id) {
@@ -207,6 +227,8 @@
         var tgl_kembali = $('#tgl_kembali').val();
         var backdays = $('#backdays').val();
         var total_denda = $('#total_denda').val();
+        var pay = $('#pay').val();
+        var overpay = $('#overpay').val();
         // console.log([nama, type, merk]);
         $.ajax({
             method: "POST",
@@ -216,7 +238,9 @@
                 trxno: trxno, 
                 tgl_kembali: tgl_kembali,
                 backdays: backdays, 
-                total_denda: total_denda, 
+                total_denda: total_denda,   
+                pay: pay, 
+                overpay: overpay,
                 detail : dataDetail,
             },
             dataType: 'json',

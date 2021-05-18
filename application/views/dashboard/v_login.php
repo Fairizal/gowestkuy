@@ -35,6 +35,37 @@
         <!-- END Stylesheets -->
     </head>
     <body>
+         <!--
+            OneUI JS Core
+
+            Vital libraries and plugins used in all pages. You can choose to not include this file if you would like
+            to handle those dependencies through webpack. Please check out assets/_es6/main/bootstrap.js for more info.
+
+            If you like, you could also include them separately directly from the assets/js/core folder in the following
+            order. That can come in handy if you would like to include a few of them (eg jQuery) from a CDN.
+
+            assets/js/core/jquery.min.js
+            assets/js/core/bootstrap.bundle.min.js
+            assets/js/core/simplebar.min.js
+            assets/js/core/jquery-scrollLock.min.js
+            assets/js/core/jquery.appear.min.js
+            assets/js/core/js.cookie.min.js
+        -->
+        <script src="assets/js/oneui.core.min.js"></script>
+
+        <!--
+            OneUI JS
+
+            Custom functionality including Blocks/Layout API as well as other vital and optional helpers
+            webpack is putting everything together at assets/_es6/main/app.js
+        -->
+        <script src="assets/js/oneui.app.min.js"></script>
+
+        <!-- Page JS Plugins -->
+        <script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+
+        <!-- Page JS Code -->
+        <script src="assets/js/pages/op_auth_signin.min.js"></script>
         <!-- Page Container -->
         <!--
             Available classes for #page-container:
@@ -103,7 +134,7 @@
                                         <!-- Sign In Form -->
                                         <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _es6/pages/op_auth_signin.js) -->
                                         <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                                        <form class="js-validation-signin" action="login/auth" method="POST">
+                                        <form class="js-validation-signin" method="POST" onsubmit="return false;">
                                             <div class="py-3">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control form-control-lg form-control-alt" id="username" name="username" placeholder="Username">
@@ -111,21 +142,10 @@
                                                 <div class="form-group">
                                                     <input type="password" class="form-control form-control-lg form-control-alt" id="password" name="password" placeholder="Password">
                                                 </div>
-                                                <!-- <div class="form-group">
-                                                    <div class="d-md-flex align-items-md-center justify-content-md-between">
-                                                        <div class="custom-control custom-switch">
-                                                            <input type="checkbox" class="custom-control-input" id="login-remember" name="login-remember">
-                                                            <label class="custom-control-label font-w400" for="login-remember">Remember Me</label>
-                                                        </div>
-                                                        <div class="py-2">
-                                                            <a class="font-size-sm font-w500" href="op_auth_reminder2.html">Forgot Password?</a>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
                                             </div>
                                             <div class="form-group row justify-content-center mb-0">
                                                 <div class="col-md-6 col-xl-5">
-                                                    <button type="submit" class="btn btn-block btn-primary">
+                                                    <button class="btn btn-block btn-primary" onclick="$.fn.login()">
                                                         <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Login
                                                     </button>
                                                 </div>
@@ -150,37 +170,48 @@
             <!-- END Main Container -->
         </div>
         <!-- END Page Container -->
-
-        <!--
-            OneUI JS Core
-
-            Vital libraries and plugins used in all pages. You can choose to not include this file if you would like
-            to handle those dependencies through webpack. Please check out assets/_es6/main/bootstrap.js for more info.
-
-            If you like, you could also include them separately directly from the assets/js/core folder in the following
-            order. That can come in handy if you would like to include a few of them (eg jQuery) from a CDN.
-
-            assets/js/core/jquery.min.js
-            assets/js/core/bootstrap.bundle.min.js
-            assets/js/core/simplebar.min.js
-            assets/js/core/jquery-scrollLock.min.js
-            assets/js/core/jquery.appear.min.js
-            assets/js/core/js.cookie.min.js
-        -->
-        <script src="assets/js/oneui.core.min.js"></script>
-
-        <!--
-            OneUI JS
-
-            Custom functionality including Blocks/Layout API as well as other vital and optional helpers
-            webpack is putting everything together at assets/_es6/main/app.js
-        -->
-        <script src="assets/js/oneui.app.min.js"></script>
-
-        <!-- Page JS Plugins -->
-        <script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-
-        <!-- Page JS Code -->
-        <script src="assets/js/pages/op_auth_signin.min.js"></script>
+        <div style="position: fixed; top: 2rem; right: 2rem; z-index: 9999999;">
+            <!-- Toast Example 1 -->
+            <div id="toast-example-1" class="toast fade hide" data-delay="4000" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <i class="si si-bubble text-primary mr-2"></i>
+                    <strong class="mr-auto" id="toastTitle">Title</strong>
+                    <button type="button" class="ml-2 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body" id="toastText">
+                    This is a nice notification based on Bootstrap implementation.
+                </div>
+            </div>
+            <!-- END Toast Example 1 -->
+        </div>
+        <script type="text/javascript">
+            $.fn.login = function() {
+                var username = $('#username').val();
+                var password = $('#password').val();
+                $.ajax({
+                    method: "POST",
+                    url: "<?= base_url('login/auth') ?>",
+                    data: { 
+                        username: username,
+                        password: password,
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if(data.status == true) {
+                            // $('#toastTitle').text('Berhasil');
+                            // $('#toastText').text(data.msg);
+                            // jQuery('#toast-example-1').toast('show');
+                            window.location.href = "<?= base_url('dashboard') ?>";
+                        } else {
+                            $('#toastTitle').text('Gagal');
+                            $('#toastText').text(data.msg);
+                            jQuery('#toast-example-1').toast('show');
+                        }
+                    }
+                });
+            }
+        </script>
     </body>
 </html>

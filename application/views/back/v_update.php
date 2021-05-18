@@ -56,7 +56,7 @@
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">Lama Telat</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="backdays" name="backdays" placeholder="Isi lama telat" value="<?= $dataBack[0]->backdays ?>">
+                                <input type="text" class="form-control" id="backdays" name="backdays" placeholder="Isi lama telat" value="<?= $dataBack[0]->backdays ?>" disabled>
                             </div>
                         </div>
                     </div>
@@ -99,6 +99,18 @@
                             <label for="example-text-input" class="col-sm-4 col-form-label">Total</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="total_denda" name="total_denda" placeholder="Total" disabled value="<?= $dataBack[0]->total_denda ?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="pay" name="pay" placeholder="Total" value="<?= $dataBack[0]->pay ?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">Lebih Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="overpay" name="overpay" placeholder="Total" value="<?= $dataBack[0]->overpay ?>" disabled>
                             </div>
                         </div>
                     </div>
@@ -157,6 +169,7 @@
                             $('#detail > tbody:last').append(rowTable);
                             var total_denda = $('#total_denda').val();
                             $('#total_denda').val(parseInt(total_denda)+parseInt(denda));
+                            $('#overpay').val(parseInt($('#pay').val())-parseInt($('#total_denda').val()));
                         })
                     } 
                     else {
@@ -167,6 +180,10 @@
                 }
             });
         }
+    });
+
+    $('#pay').keyup(function(){
+        $('#overpay').val(parseInt($(this).val() != '' ? $(this).val() : 0)-parseInt($('#total_denda').val()));
     });
 
     // $.fn.deleteColumn = function(id) {
@@ -192,6 +209,8 @@
         var tgl_kembali = $('#tgl_kembali').val();
         var backdays = $('#backdays').val();
         var total_denda = $('#total_denda').val();
+        var pay = $('#pay').val();
+        var overpay = $('#overpay').val();
         $.ajax({
             method: "POST",
             url: "<?= base_url('back/update/').$dataBack[0]->id ?>",
@@ -200,7 +219,9 @@
                 trxno: trxno, 
                 tgl_kembali: tgl_kembali,
                 backdays: backdays, 
-                total_denda: total_denda, 
+                total_denda: total_denda,   
+                pay: pay, 
+                overpay: overpay,
                 detail : dataDetail,
             },
             dataType: 'json',

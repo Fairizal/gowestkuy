@@ -41,9 +41,12 @@ class Sewa extends CI_Controller {
 				'tgl_sewa' => $postData['tgl_sewa'],
 				'duedays' => $postData['duedays'],
 				'pelanggan' => $postData['pelanggan'],
+				'ktpno' => $postData['ktpno'],
 				'nohp' => $postData['nohp'],
 				'alamat' => $postData['alamat'],
 				'total' => $postData['total'],
+				'pay' => $postData['total'],
+				'overpay' => $postData['overpay']
 			];
 			$dataDetail = $postData['detail'];
 			$id = $this->m_sewa->insertData($data, $dataDetail);
@@ -104,9 +107,12 @@ class Sewa extends CI_Controller {
 				'tgl_sewa' => $postData['tgl_sewa'],
 				'duedays' => $postData['duedays'],
 				'pelanggan' => $postData['pelanggan'],
+				'ktpno' => $postData['ktpno'],
 				'nohp' => $postData['nohp'],
 				'alamat' => $postData['alamat'],
 				'total' => $postData['total'],
+				'pay' => $postData['total'],
+				'overpay' => $postData['overpay']
 			];
 			$dataDetail = $postData['detail'];
 			$id = $this->m_sewa->updateData($id, $data, $dataDetail);

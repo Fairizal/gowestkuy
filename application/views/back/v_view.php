@@ -87,6 +87,18 @@
                                 <input type="text" class="form-control" id="total" name="total" placeholder="Total" disabled value="<?= $dataBack[0]->total_denda ?>">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="pay" name="pay" placeholder="Total" value="<?= $dataBack[0]->pay ?>" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">Lebih Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="overpay" name="overpay" placeholder="Total" value="<?= $dataBack[0]->overpay ?>" disabled>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div>

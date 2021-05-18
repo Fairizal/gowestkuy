@@ -55,6 +55,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">No. KTP</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ktpno" name="ktpno" placeholder="Isi No. KTP" value="<?= $dataSewa[0]->ktpno ?>" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">No. HP</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Isi No. HP Karyawan" disabled value="<?= $dataSewa[0]->nohp ?>">
@@ -133,10 +139,23 @@
                                 <input type="text" class="form-control" id="total" name="total" placeholder="Total" disabled value="<?= $dataSewa[0]->total ?>">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="pay" name="pay" placeholder="Total" value="<?= $dataSewa[0]->pay + $dataSewa[0]->overpay ?>" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">Lebih Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="overpay" name="overpay" placeholder="Total" value="<?= $dataSewa[0]->overpay ?>" disabled>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div>
                     <a href="<?= base_url('sewa')?>" class="btn btn-alt-light" id="back">Kembali</a>
+                    <button onclick="$.fn.back()" class="btn btn-primary" id="back" <?php echo $dataSewa[0]->isback ? 'disabled' : '' ?>><?php echo $dataSewa[0]->isback ? 'Sudah Dikembalikan' : 'Pengembalian' ?></button>
                 </div>
             </form>
         </div>
@@ -207,5 +226,9 @@
                 }
             }
         });
+    }
+
+    $.fn.back = function() {
+        window.location.href = "<?= base_url('back/create?id=') . $dataSewa[0]->id ?>";        
     }
 </script>

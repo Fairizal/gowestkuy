@@ -50,6 +50,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">No. KTP</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ktpno" name="ktpno" placeholder="Isi No. KTP">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">No. HP</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Isi No. HP Karyawan">
@@ -108,6 +114,18 @@
                                 <input type="text" class="form-control" id="total" name="total" placeholder="Total" value="0" disabled>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="pay" name="pay" placeholder="Total" value="0">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-4 col-form-label">Lebih Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="overpay" name="overpay" placeholder="Total" value="0" disabled>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -131,8 +149,8 @@
                 $('#nullDataTable').remove();
             }
             var idx = 0; 
-            var rowCount = $('#detail tbody tr').length;
-            if(rowCount < 2) {
+            // var rowCount = $('#detail tbody tr').length;
+            // if(rowCount < 2) {
                 idx = new Date().getTime();;
                 var data = filter(dataSepeda, id);
                 dataTemp = {
@@ -150,14 +168,19 @@
                 $('#detail > tbody:last').append(rowTable);
                 var total = $('#total').val();
                 $('#total').val(parseInt(total)+parseInt(data.harga));
-            } else {
-                $('#toastTitle').text('Gagal');
-                $('#toastText').text('Jumlah item yang disewa sudah 2');
-                jQuery('#toast-example-1').toast('show'); 
-            }
+                $('#overpay').val(parseInt($('#pay').val())-parseInt($('#total').val()));
+            // } else {
+            //     $('#toastTitle').text('Gagal');
+            //     $('#toastText').text('Jumlah item yang disewa sudah 2');
+            //     jQuery('#toast-example-1').toast('show'); 
+            // }
             $('#search').val(null);
             $('#search').trigger('change');
         }
+    });
+
+    $('#pay').keyup(function(){
+        $('#overpay').val(parseInt($(this).val() != '' ? $(this).val() : 0)-parseInt($('#total').val()));
     });
 
     $.fn.deleteColumn = function(id) {
@@ -183,10 +206,12 @@
         var tgl_sewa = $('#tgl_sewa').val();
         var duedays = $('#duedays').val();
         var pelanggan = $('#pelanggan').val();
+        var ktpno = $('#ktpno').val();
         var nohp = $('#nohp').val();
         var alamat = $('#alamat').val();
         var total = $('#total').val();
-        // console.log([nama, type, merk]);
+        var pay = $('#pay').val();
+        var overpay = $('#overpay').val();
         $.ajax({
             method: "POST",
             url: "<?= base_url('sewa/create') ?>",
@@ -195,9 +220,12 @@
                 tgl_sewa: tgl_sewa,
                 duedays: duedays, 
                 pelanggan: pelanggan, 
+                ktpno : ktpno,
                 nohp: nohp, 
                 alamat: alamat, 
-                total: total, 
+                total: total,  
+                pay: pay, 
+                overpay: overpay,
                 detail : dataDetail,
             },
             dataType: 'json',

@@ -25,9 +25,9 @@ class Login extends CI_Controller {
             $result = $this->m_login->get_data($username,$password);
             if ($result != null) {
                 $this->session->set_userdata('user',$result[0]);
-                redirect('dashboard');
+                $this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'msg'=>'')));
             } else {
-                redirect('login');
+                $this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Username atau Password Salah')));
             }
         }else{
             redirect('login');

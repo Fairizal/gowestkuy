@@ -45,6 +45,8 @@ class Back extends CI_Controller {
 				'tgl_kembali' => $postData['tgl_kembali'],
 				'backdays' => $postData['backdays'],
 				'total_denda' => $postData['total_denda'],
+				'pay' => $postData['pay'],
+				'overpay' => $postData['overpay'],
 			];
 			$dataDetail = $postData['detail'];
 			$id = $this->m_back->insertData($data, $dataDetail);
@@ -107,6 +109,8 @@ class Back extends CI_Controller {
 				'tgl_kembali' => $postData['tgl_kembali'],
 				'backdays' => $postData['backdays'],
 				'total_denda' => $postData['total_denda'],
+				'pay' => $postData['pay'],
+				'overpay' => $postData['overpay'],
 			];
 			$dataDetail = $postData['detail'];
 			$id = $this->m_back->updateData($id, $data, $dataDetail);
