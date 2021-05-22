@@ -135,4 +135,14 @@ class Sewa extends CI_Controller {
 			$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>false, 'msg'=>'Gagal menghapus data')));
 		}
 	}
+	public function cetak_invoice($id)
+	{
+		$this->load->helper('url');
+		$data['title'] = 'Invoice ' . $this->title;
+		$data['link'] = $this->link;
+		$data['dataSewa'] = $this->m_sewa->getData($id);
+		$data['dataSewad'] = $this->m_sewad->getIndex($id);
+		$data['content'] = 'sewa/v_cetak_invoice';
+		$this->load->view('layouts/v_layout_print', $data);
+	}
 }
