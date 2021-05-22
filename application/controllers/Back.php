@@ -139,4 +139,15 @@ class Back extends CI_Controller {
 		$data = $this->m_sewad->getIndex($id);
 		return $this->output->set_content_type("application/json")->set_output(json_encode($data));
 	}
+	public function cetak($id)
+	{
+		$this->load->helper('url');
+		$data['title'] = 'Invoice ' . $this->title;
+		$data['link'] = $this->link;
+		$data['dataSewa'] = $this->m_sewa->getIndex();
+		$data['dataBack'] = $this->m_back->getData($id);
+		$data['dataBackd'] = $this->m_backd->getIndex($id);
+		$data['content'] = 'back/v_print_back';
+		$this->load->view('layouts/v_layout_print', $data);
+	}
 }

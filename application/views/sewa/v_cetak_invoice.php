@@ -1,3 +1,4 @@
+<h1> <center> GoWest Kuy </center></h1>
 <div class="content">
     <!-- Basic -->
     <div class="block block-rounded">
@@ -35,7 +36,7 @@
                                 <input type="text" class="form-control" id="pelanggan" name="pelanggan" placeholder="Isi nama pelanggan" disabled value="<?= $dataSewa[0]->pelanggan ?>">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">No. KTP</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="ktpno" name="ktpno" placeholder="Isi No. KTP" value="<?= $dataSewa[0]->ktpno ?>" disabled>
@@ -46,7 +47,7 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Isi No. HP Karyawan" disabled value="<?= $dataSewa[0]->nohp ?>">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">Alamat</label>
                             <div class="col-sm-8">
