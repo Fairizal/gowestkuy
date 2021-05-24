@@ -211,34 +211,53 @@
         var total_denda = $('#total_denda').val();
         var pay = $('#pay').val();
         var overpay = $('#overpay').val();
-        $.ajax({
-            method: "POST",
-            url: "<?= base_url('back/update/').$dataBack[0]->id ?>",
-            data: { 
-                sewa_id: sewa_id, 
-                trxno: trxno, 
-                tgl_kembali: tgl_kembali,
-                backdays: backdays, 
-                total_denda: total_denda,   
-                pay: pay, 
-                overpay: overpay,
-                detail : dataDetail,
-            },
-            dataType: 'json',
-            // contentType: 'application/json',
-            success: function(data) {
-                if(data.status == true) {
-                    $('#toastTitle').text('Berhasil');
-                    $('#toastText').text(data.msg);
-                    jQuery('#toast-example-1').toast('show');
-                    window.location.href = "<?= base_url('back/view/') ?>"+data.id;
-                } else {
-                    $('#toastTitle').text('Gagal');
-                    $('#toastText').text(data.msg);
-                    jQuery('#toast-example-1').toast('show');
+
+        if (trxno == '') {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Harap Mengisi No.Transaksi');
+            jQuery('#toast-example-1').toast('show');
+        } else if (tgl_kembali == '') {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Harap Mengisi Tanggal Transaksi');
+            jQuery('#toast-example-1').toast('show');
+        } else if (backdays == '') {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Harap Mengisi Lama Penyewaan');
+            jQuery('#toast-example-1').toast('show');
+        } else if (parseInt(total_denda) > parseInt(pay)) {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Jumlah bayar tidak boleh kurang dari total denda');
+            jQuery('#toast-example-1').toast('show');
+        } else {
+            $.ajax({
+                method: "POST",
+                url: "<?= base_url('back/update/').$dataBack[0]->id ?>",
+                data: { 
+                    sewa_id: sewa_id, 
+                    trxno: trxno, 
+                    tgl_kembali: tgl_kembali,
+                    backdays: backdays, 
+                    total_denda: total_denda,   
+                    pay: pay, 
+                    overpay: overpay,
+                    detail : dataDetail,
+                },
+                dataType: 'json',
+                // contentType: 'application/json',
+                success: function(data) {
+                    if(data.status == true) {
+                        $('#toastTitle').text('Berhasil');
+                        $('#toastText').text(data.msg);
+                        jQuery('#toast-example-1').toast('show');
+                        window.location.href = "<?= base_url('back/view/') ?>"+data.id;
+                    } else {
+                        $('#toastTitle').text('Gagal');
+                        $('#toastText').text(data.msg);
+                        jQuery('#toast-example-1').toast('show');
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     $.fn.delete = function() {

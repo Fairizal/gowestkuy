@@ -63,13 +63,13 @@
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">No. HP</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Isi No. HP Karyawan" disabled value="<?= $dataSewa[0]->nohp ?>">
+                                <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Isi No. HP Pelanggan" disabled value="<?= $dataSewa[0]->nohp ?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">Alamat</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Isi Alamat Karyawan" disabled value="<?= $dataSewa[0]->alamat ?>">
+                                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Isi Alamat Pelanggan" disabled value="<?= $dataSewa[0]->alamat ?>">
                             </div>
                         </div>
                     </div>

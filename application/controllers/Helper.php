@@ -58,4 +58,15 @@ class Helper extends CI_Controller {
 		$hasil = $this->m_help->prettyCurrencyFormat($query[0]->omzet);
 		$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'data' => $hasil)));
 	}
+
+	public function omzetperbulan() 
+	{
+		$this->db->select('EXTRACT(MONTH FROM date(tgl_sewa)) as month, sum(total) as omzet');
+		$this->db->from('sewa');
+		$this->db->group_by("month(tgl_sewa)");
+		$query = $this->db->get()->result();
+		die(print_r($query));
+		$hasil = $this->m_help->prettyCurrencyFormat($query[0]->omzet);
+		$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'data' => $hasil)));
+	}
 }

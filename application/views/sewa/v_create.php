@@ -58,13 +58,13 @@
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">No. HP</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Isi No. HP Karyawan">
+                                <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Isi No. HP Pelanggan">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label">Alamat</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Isi Alamat Karyawan">
+                                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Isi Alamat pelanggan">
                             </div>
                         </div>
                     </div>
@@ -141,6 +141,12 @@
 <script type="text/javascript">
     var dataSepeda = <?= json_encode($dataSepeda) ?>;
     var dataDetail = [];
+
+    $(document).ready(function() {
+        $('#tgl_sewa').val("<?php echo date('Y-m-d')?>");
+        $('#duedays').val("3");
+    });
+
     $('#search').change(function(){
         var id = $(this).select2('val');
         if (id != "") {
@@ -212,36 +218,71 @@
         var total = $('#total').val();
         var pay = $('#pay').val();
         var overpay = $('#overpay').val();
-        $.ajax({
-            method: "POST",
-            url: "<?= base_url('sewa/create') ?>",
-            data: { 
-                trxno: trxno, 
-                tgl_sewa: tgl_sewa,
-                duedays: duedays, 
-                pelanggan: pelanggan, 
-                ktpno : ktpno,
-                nohp: nohp, 
-                alamat: alamat, 
-                total: total,  
-                pay: pay, 
-                overpay: overpay,
-                detail : dataDetail,
-            },
-            dataType: 'json',
-            // contentType: 'application/json',
-            success: function(data) {
-                if(data.status == true) {
-                    $('#toastTitle').text('Berhasil');
-                    $('#toastText').text(data.msg);
-                    jQuery('#toast-example-1').toast('show');
-                    window.location.href = "<?= base_url('sewa/view/') ?>"+data.id;
-                } else {
-                    $('#toastTitle').text('Gagal');
-                    $('#toastText').text(data.msg);
-                    jQuery('#toast-example-1').toast('show');
+
+        if (trxno == '') {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Harap Mengisi No.Transaksi');
+            jQuery('#toast-example-1').toast('show');
+        } else if (tgl_sewa == '') {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Harap Mengisi Tanggal Transaksi');
+            jQuery('#toast-example-1').toast('show');
+        } else if (duedays == '') {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Harap Mengisi Lama Penyewaan');
+            jQuery('#toast-example-1').toast('show');
+        } else if (pelanggan == '') {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Harap Mengisi Nama Pelanggan');
+            jQuery('#toast-example-1').toast('show');
+        } else if (ktpno == '') {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Harap Mengisi No.KTP');
+            jQuery('#toast-example-1').toast('show');
+        } else if (nohp == '') {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Harap Mengisi No.HP');
+            jQuery('#toast-example-1').toast('show');
+        } else if (alamat == '') {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Harap Mengisi Alamat');
+            jQuery('#toast-example-1').toast('show');
+        } else if (parseInt(total) > parseInt(pay)) {
+            $('#toastTitle').text('Gagal');
+            $('#toastText').text('Jumlah bayar tidak boleh kurang dari total');
+            jQuery('#toast-example-1').toast('show');
+        } else {
+            $.ajax({
+                method: "POST",
+                url: "<?= base_url('sewa/create') ?>",
+                data: { 
+                    trxno: trxno, 
+                    tgl_sewa: tgl_sewa,
+                    duedays: duedays, 
+                    pelanggan: pelanggan, 
+                    ktpno : ktpno,
+                    nohp: nohp, 
+                    alamat: alamat, 
+                    total: total,  
+                    pay: pay, 
+                    overpay: overpay,
+                    detail : dataDetail,
+                },
+                dataType: 'json',
+                // contentType: 'application/json',
+                success: function(data) {
+                    if(data.status == true) {
+                        $('#toastTitle').text('Berhasil');
+                        $('#toastText').text(data.msg);
+                        jQuery('#toast-example-1').toast('show');
+                        window.location.href = "<?= base_url('sewa/view/') ?>"+data.id;
+                    } else {
+                        $('#toastTitle').text('Gagal');
+                        $('#toastText').text(data.msg);
+                        jQuery('#toast-example-1').toast('show');
+                    }
                 }
-            }
-        });
+            });  
+        }
     }
 </script>

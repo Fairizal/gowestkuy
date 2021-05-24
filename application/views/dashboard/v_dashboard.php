@@ -104,8 +104,8 @@
     <!-- END Overview -->
 
     <!-- Statistics -->
-    <!-- <div class="row">
-        <div class="col-xl-8 d-flex flex-column"> -->
+    <div class="row">
+        <!-- <div class="col-xl-8 d-flex flex-column"> -->
             <!-- Earnings Summary -->
             <!-- <div class="block block-rounded flex-grow-1 d-flex flex-column">
                 <div class="block-header block-header-default">
@@ -124,34 +124,6 @@
                     <!-- Chart.js Chart is initialized in js/pages/be_pages_dashboard.min.js which was auto compiled from _es6/pages/be_pages_dashboard.js -->
                     <!-- For more info and examples you can check out http://www.chartjs.org/docs/ -->
                     <!-- <canvas class="js-chartjs-earnings"></canvas>
-                </div>
-                <div class="block-content bg-body-light">
-                    <div class="row items-push text-center w-100">
-                        <div class="col-sm-4">
-                            <dl class="mb-0">
-                                <dt class="font-size-h3 font-w700">
-                                    <i class="fa fa-arrow-up font-size-lg text-success"></i> 2.5%
-                                </dt>
-                                <dd class="text-muted mb-0">Customer Growth</dd>
-                            </dl>
-                        </div>
-                        <div class="col-sm-4">
-                            <dl class="mb-0">
-                                <dt class="font-size-h3 font-w700">
-                                    <i class="fa fa-arrow-up font-size-lg text-success"></i> 3.8%
-                                </dt>
-                                <dd class="text-muted mb-0">Page Views</dd>
-                            </dl>
-                        </div>
-                        <div class="col-sm-4">
-                            <dl class="mb-0">
-                                <dt class="font-size-h3 font-w700">
-                                    <i class="fa fa-arrow-up font-size-lg text-success"></i> 1.7%
-                                </dt>
-                                <dd class="text-muted mb-0">New Products</dd>
-                            </dl>
-                        </div>
-                    </div>
                 </div>
             </div> -->
             <!-- END Earnings Summary -->
@@ -259,8 +231,8 @@
                 </div>
             </div> -->
             <!-- END Last 2 Weeks -->
-        <!-- </div>
-    </div> -->
+        <!-- </div> -->
+    </div>
     <!-- END Statistics -->
 </div>
 <!-- END Page Content -->
@@ -271,7 +243,7 @@
             url: "<?= base_url('helper/getomzet/') ?>",
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 if(data.status == true) {
                     $('#omzet').text(data.data);
                 }
@@ -283,7 +255,7 @@
             url: "<?= base_url('helper/getallsewa/') ?>",
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 if(data.status == true) {
                     $('#countSewa').text(data.data.sewa);
                 }
@@ -295,7 +267,7 @@
             url: "<?= base_url('helper/getonlykembali/') ?>",
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 if(data.status == true) {
                     $('#countBackOnly').text(data.data.back);
                 }
@@ -307,12 +279,118 @@
             url: "<?= base_url('helper/getqtysepeda/') ?>",
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 if(data.status == true) {
                     $('#countSepeda').text(data.data.qtysepeda);
                 }
             }
         });
+
+        // ! function(e) {
+        //     var r = {};
+
+        //     function t(o) {
+        //         if (r[o]) return r[o].exports;
+        //         var n = r[o] = {
+        //             i: o,
+        //             l: !1,
+        //             exports: {}
+        //         };
+        //         return e[o].call(n.exports, n, n.exports, t), n.l = !0, n.exports
+        //     }
+        //     t.m = e, t.c = r, t.d = function(e, r, o) {
+        //         t.o(e, r) || Object.defineProperty(e, r, {
+        //             enumerable: !0,
+        //             get: o
+        //         })
+        //     }, t.r = function(e) {
+        //         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+        //             value: "Module"
+        //         }), Object.defineProperty(e, "__esModule", {
+        //             value: !0
+        //         })
+        //     }, t.t = function(e, r) {
+        //         if (1 & r && (e = t(e)), 8 & r) return e;
+        //         if (4 & r && "object" == typeof e && e && e.__esModule) return e;
+        //         var o = Object.create(null);
+        //         if (t.r(o), Object.defineProperty(o, "default", {
+        //                 enumerable: !0,
+        //                 value: e
+        //             }), 2 & r && "string" != typeof e)
+        //             for (var n in e) t.d(o, n, function(r) {
+        //                 return e[r]
+        //             }.bind(null, n));
+        //         return o
+        //     }, t.n = function(e) {
+        //         var r = e && e.__esModule ? function() {
+        //             return e.default
+        //         } : function() {
+        //             return e
+        //         };
+        //         return t.d(r, "a", r), r
+        //     }, t.o = function(e, r) {
+        //         return Object.prototype.hasOwnProperty.call(e, r)
+        //     }, t.p = "", t(t.s = 0)
+        // }([function(e, r, t) {
+        //     e.exports = t(1)
+        // }, function(e, r) {
+        //     function t(e, r) {
+        //         for (var t = 0; t < r.length; t++) {
+        //             var o = r[t];
+        //             o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, o.key, o)
+        //         }
+        //     }
+        //     var o = function() {
+        //         function e() {
+        //             ! function(e, r) {
+        //                 if (!(e instanceof r)) throw new TypeError("Cannot call a class as a function")
+        //             }(this, e)
+        //         }
+        //         var r, o, n;
+        //         return r = e, n = [{
+        //             key: "initCharts",
+        //             value: function() {
+        //                 Chart.defaults.global.defaultFontColor = "#495057", Chart.defaults.scale.gridLines.color = "transparent", Chart.defaults.scale.gridLines.zeroLineColor = "transparent", Chart.defaults.scale.ticks.beginAtZero = !0, Chart.defaults.global.elements.line.borderWidth = 0, Chart.defaults.global.elements.point.radius = 0, Chart.defaults.global.elements.point.hoverRadius = 0, Chart.defaults.global.tooltips.cornerRadius = 3, Chart.defaults.global.legend.labels.boxWidth = 12;
+        //                 var e, r = jQuery(".js-chartjs-earnings");
+        //                 e = {
+        //                     labels: ["JAN", "FEB", "MAR", "APR", "MEI", "JUN", "JUL", "AGS", "SEP", "OKT", "NOV", "DES"],
+        //                     datasets: [{
+        //                         label: "Omzet",
+        //                         fill: !0,
+        //                         backgroundColor: "rgba(81, 121, 214, .75)",
+        //                         borderColor: "transparent",
+        //                         pointBackgroundColor: "rgba(81, 121, 214, 1)",
+        //                         pointBorderColor: "#fff",
+        //                         pointHoverBackgroundColor: "#fff",
+        //                         pointHoverBorderColor: "rgba(81, 121, 214, 1)",
+        //                         data: [2000, 628, 1056, 560, 956, 890, 790]
+        //                     }]
+        //                 }, r.length && new Chart(r, {
+        //                     type: "bar",
+        //                     data: e,
+        //                     options: {
+        //                         tooltips: {
+        //                             intersect: !1,
+        //                             callbacks: {
+        //                                 label: function(e, r) {
+        //                                     return r.datasets[e.datasetIndex].label + ": $" + e.yLabel
+        //                                 }
+        //                             }
+        //                         }
+        //                     }
+        //                 })
+        //             }
+        //         }, {
+        //             key: "init",
+        //             value: function() {
+        //                 this.initCharts()
+        //             }
+        //         }], (o = null) && t(r.prototype, o), n && t(r, n), e
+        //     }();
+        //     jQuery((function() {
+        //         o.init()
+        //     }))
+        // }]);
         
     })
 </script>
