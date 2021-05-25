@@ -66,6 +66,12 @@ class Helper extends CI_Controller {
 		$this->db->group_by("month(tgl_sewa)");
 		$query = $this->db->get()->result();
 		die(print_r($query));
+		$datas = []
+		for ($i=1; $i < 13; $i++) { 
+			foreach ($query as $value) {
+				if
+			}
+		}
 		$hasil = $this->m_help->prettyCurrencyFormat($query[0]->omzet);
 		$this->output->set_content_type("application/json")->set_output(json_encode(array('status'=>true, 'data' => $hasil)));
 	}

@@ -2,10 +2,14 @@
 
 class M_Sewa extends CI_Model
 {
-	public function getIndex()
+	public function getIndex($filter = [])
 	{
 		$this->db->select('*');
 		$this->db->from('sewa');
+		if(!empty($filter)){
+			$this->db->where('date(tgl_sewa) >=', $filter['startdate']);
+			$this->db->where('date(tgl_sewa) <=', $filter['enddate']);
+		}
 		$query = $this->db->get()->result();
 		return $query;
 	}

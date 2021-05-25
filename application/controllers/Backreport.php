@@ -24,7 +24,14 @@ class Backreport extends CI_Controller {
 		$data['title'] = $this->title;
 		$data['link'] = $this->link;
 		$data['content'] = 'backreport/v_index';
-		$data['dataBack'] = $this->m_back->getIndex();
+		$date = new \DateTime(date('Y-m-d'));
+		$filter['startdate'] = $date->modify('- 30 days')->format('Y-m-d');
+		$filter['enddate'] = date('Y-m-d');
+		if($this->input->get()) {
+			$filter['startdate'] = $this->input->get('startdate');
+			$filter['enddate'] = $this->input->get('enddate');
+		}
+		$data['dataBack'] = $this->m_back->getIndex($filter);
 		$this->load->view('layouts/v_layouts', $data);
 	}
 

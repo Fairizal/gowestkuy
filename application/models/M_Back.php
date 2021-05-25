@@ -6,6 +6,10 @@ class M_Back extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('back');
+		if(!empty($filter)){
+			$this->db->where('date(tgl_sewa) >=', $filter['startdate']);
+			$this->db->where('date(tgl_sewa) <=', $filter['enddate']);
+		}
 		$query = $this->db->get()->result();
 		return $query;
 	}
