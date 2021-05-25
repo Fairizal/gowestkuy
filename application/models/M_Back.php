@@ -2,13 +2,13 @@
 
 class M_Back extends CI_Model
 {
-	public function getIndex()
+	public function getIndex($filter = [])
 	{
 		$this->db->select('*');
 		$this->db->from('back');
 		if(!empty($filter)){
-			$this->db->where('date(tgl_sewa) >=', $filter['startdate']);
-			$this->db->where('date(tgl_sewa) <=', $filter['enddate']);
+			$this->db->where('date(tgl_kembali) >=', $filter['startdate']);
+			$this->db->where('date(tgl_kembali) <=', $filter['enddate']);
 		}
 		$query = $this->db->get()->result();
 		return $query;
